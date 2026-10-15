@@ -1,0 +1,12 @@
+coc_number,coc_name,coc_category,count_type,overall_homeless,sheltered_homeless,unsheltered_homeless,nh_total,hispanic_total,nh_aian,nh_asian,nh_black,nh_nhpi,nh_white,nh_multiracial,nh_mena
+MA-500,Boston CoC,Major City CoC,Sheltered and Unsheltered Count,5540,5408,132,3832,1708,21,70,2535,11,784,390,21
+MA-502,Lynn CoC,Largely Suburban CoC,Sheltered and Unsheltered Count,1271,1223,48,668,603,2,6,411,3,243,3,0
+MA-503,Cape Cod Islands CoC,Largely Suburban CoC,Sheltered and Unsheltered Count,365,305,60,328,37,5,1,105,0,200,17,0
+MA-504,Springfield/Hampden County CoC,Largely Suburban CoC,Sheltered and Unsheltered Count,2709,2498,211,1576,1133,4,15,1071,3,468,13,2
+MA-505,New Bedford CoC,Largely Suburban CoC,Sheltered and Unsheltered Count,1125,1024,101,959,166,4,2,592,1,273,86,1
+MA-506,Worcester City & County CoC,Largely Suburban CoC,Sheltered and Unsheltered Count,2864,2643,221,2103,761,5,14,1423,3,611,37,10
+MA-507,"Pittsfield/Berkshire, Franklin, Hampshire Counties CoC",Largely Rural CoC,Sheltered and Unsheltered Count,867,760,107,711,156,7,8,263,0,409,24,0
+MA-509,Cambridge CoC,Other Largely Urban CoC,Sheltered and Unsheltered Count,575,498,77,459,116,3,9,250,2,171,20,4
+MA-511,"Quincy, Brockton, Weymouth, Plymouth City and County CoC",Largely Suburban CoC,Sheltered and Unsheltered Count,1799,1725,74,1534,265,5,10,1093,0,398,23,5
+MA-515,Fall River CoC,Largely Suburban CoC,Sheltered and Unsheltered Count,657,442,215,567,90,2,2,235,2,312,14,0
+MA-516,Massachusetts Balance of State CoC,Largely Suburban CoC,Sheltered and Unsheltered Count,10539,10037,502,7753,2786,8,98,6142,2,1391,95,17
