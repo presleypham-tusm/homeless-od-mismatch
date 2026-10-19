@@ -38,6 +38,8 @@ Main limitation to state up front: homelessness varies only across 11 CoCs, so i
 4. Alternative facility definitions: sliding-fee MOUD (A2), OTP-only.
 5. 2024-2025 pooled outcome.
 6. Move Cohasset to Balance of State (see crosswalk note in project log).
+7. Drop towns with fewer than 1,000 residents (added 2026-10-19, see Deviations).
+8. Add rent burden back, complete-case (added 2026-10-19, see Deviations).
 
 ## 5. What this analysis will NOT claim
 
@@ -64,4 +66,7 @@ Main limitation to state up front: homelessness varies only across 11 CoCs, so i
 - Is 2025-only acceptable as the primary outcome year?
 
 ## Deviations
-(none yet)
+### 2026-10-19 (before any model was fit)
+- **Rent dropped from the primary model.** ACS median rent as % of income is missing for 12 of 351 towns (6 in MA-507, all small except Berkley), so using it would drop towns non-randomly and break the 971-death tie-out. It is also conceptually close to the homelessness exposure. Primary covariates are now four: % poverty, % age 25-44, % Black non-Hispanic, % Hispanic. Rent is kept in `acs_town_covariates.csv` for a complete-case sensitivity check.
+- **Added sensitivity check 7:** drop towns with fewer than 1,000 residents (ACS shares are very noisy there; e.g., Monroe, 122 residents, shows 38.5% poverty).
+- **Offset:** DPH town population (2020 Census) is kept as the offset. It differs from the ACS 2020-2024 population by more than 10% in 30 small, mostly rural and Cape/Islands towns; noted as a limitation.
