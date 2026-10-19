@@ -33,17 +33,32 @@ dat <- xw |> rename(pop = pop) |>
   mutate(small_town = pop < 1000)
 
 # ---- 3. Town-level distance to nearest MOUD facility (km, straight line) ----
-fac <- read_csv(here("data", "interim", "samhsa_ma_facilities.csv"), show_col_types = FALSE) |>
-  mutate(def_narrow_a2 = is_moud & sliding_fee) |>
-  filter(!is.na(lat), !is.na(lon))                       # NOTE: ~12% of listings have no coordinates; excluded here
-message("Facilities with coordinates: ", nrow(fac), " (MOUD: ", sum(fac$is_moud), ", A2: ", sum(fac$def_narrow_a2), ")")
-fac_sf <- st_as_sf(fac, coords = c("lon", "lat"), crs = 4326) |> st_transform(26986)
-
 towns_sf <- county_subdivisions("MA", cb = FALSE, year = 2024) |>
   filter(!str_detect(NAME, "not defined")) |>
   mutate(town = str_remove(NAME, " Town$"), town = if_else(town == "Manchester-by-the-Sea", "Manchester", town)) |>
   select(town, geometry) |> st_transform(26986) |> st_make_valid()
 pts <- st_point_on_surface(towns_sf)
+
+# Facilities: use real coordinates when SAMHSA has them; otherwise place the facility at the
+# point-on-surface of its town (accurate to town scale; fine for a distance covariate).
+fac_all <- read_csv(here("data", "interim", "samhsa_ma_facilities.csv"), show_col_types = FALSE) |>
+  filter(is_moud) |>                                      # A2 is a subset of MOUD
+  mutate(def_narrow_a2 = is_moud & sliding_fee, fac_id = row_number())
+has_xy <- !is.na(fac_all$lat) & !is.na(fac_all$lon)
+village_to_town <- c("Feeding Hills" = "Agawam", "Jamaica Plain" = "Boston", "Roxbury" = "Boston",
+                     "Dorchester Center" = "Boston", "Vineyard Haven" = "Tisbury")
+miss <- fac_all[!has_xy, ] |> mutate(town_key = coalesce(unname(village_to_town[city]), city))
+idx <- match(miss$town_key, pts$town)
+if (anyNA(idx)) print(miss$city[is.na(idx)])               # CHECK: must print nothing
+stopifnot(!anyNA(idx))
+fac_sf <- rbind(
+  st_as_sf(fac_all[has_xy, ], coords = c("lon", "lat"), crs = 4326) |> st_transform(26986) |>
+    select(fac_id, is_moud, def_narrow_a2),
+  st_sf(miss |> select(fac_id, is_moud, def_narrow_a2), geometry = st_geometry(pts)[idx])
+)
+message("MOUD facilities used: ", nrow(fac_sf), " (", sum(has_xy), " with coordinates, ", sum(!has_xy),
+        " placed by town); A2: ", sum(fac_sf$def_narrow_a2), " (expect 275 MOUD, 71 A2)")
+stopifnot(nrow(fac_sf) == 275, sum(fac_sf$def_narrow_a2) == 71)
 
 nearest_km <- function(pts, facs) {
   d <- st_distance(pts, facs)                              # metres, towns x facilities
