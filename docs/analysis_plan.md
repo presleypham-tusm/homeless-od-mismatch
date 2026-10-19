@@ -40,6 +40,8 @@ Main limitation to state up front: homelessness varies only across 11 CoCs, so i
 6. Move Cohasset to Balance of State (see crosswalk note in project log).
 7. Drop towns with fewer than 1,000 residents (added 2026-10-19, see Deviations).
 8. Add rent burden back, complete-case (added 2026-10-19, see Deviations).
+9. CoC-level MOUD exposures (MOUD, A2 and OTP per 100k) in place of town distance (added 2026-10-19).
+10. CoC-level negative binomial with 11 rows, matching the true sample size for the homelessness exposure (added 2026-10-19).
 
 ## 5. What this analysis will NOT claim
 
@@ -70,3 +72,5 @@ Main limitation to state up front: homelessness varies only across 11 CoCs, so i
 - **Rent dropped from the primary model.** ACS median rent as % of income is missing for 12 of 351 towns (6 in MA-507, all small except Berkley), so using it would drop towns non-randomly and break the 971-death tie-out. It is also conceptually close to the homelessness exposure. Primary covariates are now four: % poverty, % age 25-44, % Black non-Hispanic, % Hispanic. Rent is kept in `acs_town_covariates.csv` for a complete-case sensitivity check.
 - **Added sensitivity check 7:** drop towns with fewer than 1,000 residents (ACS shares are very noisy there; e.g., Monroe, 122 residents, shows 38.5% poverty).
 - **Offset:** DPH town population (2020 Census) is kept as the offset. It differs from the ACS 2020-2024 population by more than 10% in 30 small, mostly rural and Cape/Islands towns; noted as a limitation.
+- **Primary MOUD exposure = town-level straight-line distance to the nearest MOUD facility** (decided after exploratory checks, before any model). Reason: the CoC-level MOUD rate has only 11 distinct values and correlates -0.51 with the homelessness exposure, so the two would compete for the same variation. Distance has town-level variation. The CoC-level rates become sensitivity check 9. The 4 single-town CoCs (MA-500, 502, 509, 515) contribute to the fixed effects but not to the CoC variance component; check 10 is added because the homelessness effect rests on 11 distinct values.
+- Exploratory checks (scripts/05b_explore.R): variance/mean of town deaths 27.4 (12.9 without Boston), so negative binomial; no predictor pair above |rho| 0.7.
