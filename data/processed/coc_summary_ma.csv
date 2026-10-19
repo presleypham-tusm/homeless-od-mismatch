@@ -1,0 +1,12 @@
+coc_number,coc_name,pit_overall,pit_sheltered,pit_unsheltered,pit_hispanic,pit_nh_black,pit_nh_white,population,n_towns,deaths_2021,deaths_2022,deaths_2023,deaths_2024,deaths_2025,fac_broad,fac_moud,fac_narrow_a2,fac_narrow_a,fac_otp
+MA-500,Boston CoC,5540,5408,132,1708,2535,784,675647,1,249,245,276,165,128,40,31,7,31,6
+MA-502,Lynn CoC,1271,1223,48,603,411,243,101253,1,63,73,44,42,35,3,3,1,3,1
+MA-503,Cape Cod Islands CoC,365,305,60,37,105,200,263851,23,89,95,80,41,23,14,13,5,13,0
+MA-504,Springfield/Hampden County CoC,2709,2498,211,1133,1071,468,465825,23,214,227,229,138,94,28,22,5,19,4
+MA-505,New Bedford CoC,1125,1024,101,166,592,273,485200,19,221,197,187,100,87,19,17,7,16,4
+MA-506,Worcester City & County CoC,2864,2643,221,761,1423,611,862111,60,279,329,273,181,124,63,48,12,41,13
+MA-507,"Pittsfield/Berkshire, Franklin, Hampshire Counties CoC",867,760,107,156,263,409,362363,78,141,111,103,73,50,30,27,8,24,7
+MA-509,Cambridge CoC,575,498,77,116,250,171,118403,1,22,32,25,9,8,3,2,2,2,2
+MA-511,"Quincy, Brockton, Weymouth, Plymouth City and County CoC",1799,1725,74,265,1093,398,698273,30,234,257,221,143,87,24,19,4,18,5
+MA-515,Fall River CoC,657,442,215,90,235,312,94000,1,70,76,71,35,32,12,9,1,9,2
+MA-516,Massachusetts Balance of State CoC,10539,10037,502,2786,6142,1391,2902991,114,695,688,579,386,303,101,84,19,68,17
