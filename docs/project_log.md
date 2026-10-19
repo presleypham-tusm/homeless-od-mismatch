@@ -18,8 +18,8 @@ Open: DPH residence vs occurrence still unconfirmed (public pages do not say; as
 Next: send IRB email; commit scripts 02 and 03, data/processed, output/figures and analysis plan; tag plan-v0.1; get Census API key; write 04_acs_towns.R.
 
 ## 2026-10-19
-Done: ACS 2020-2024 5-year pulled for 351 towns (scripts/04_acs_towns.R); name join exact, no unmatched towns. BSAS email sent, awaiting response.
-Checked: ACS vs DPH population within about 1% for most towns; 30 small rural/Cape towns differ by more than 10%. Rent missing in 12 small towns.
+Done: ACS 2020-2024 5-year pulled for 351 towns (scripts/04_acs_towns.R); name join exact, no unmatched towns. Built the town-level analysis table (scripts/05_model_dataset.R, data/processed/model_dataset.csv): 351 rows, no missing primary variables, 971 deaths tie out to the CoC table. BSAS email sent, awaiting response.
+Checked: ACS vs DPH population within about 1% for most towns; 30 small rural/Cape towns differ by more than 10%. Rent missing in 12 small towns. 40 SAMHSA listings lack coordinates (32 MOUD); placed at their town's point-on-surface for the distance variable, which brought island and Cape distances down (max 31.7 to 25.7 km). A distance of 0 means a facility lists that town as its address. Distances are straight-line, including over water.
 Decided: drop rent from primary model (sensitivity only); add sensitivity checks 7-8; keep DPH population as offset. See plan Deviations.
-Open: DPH residence vs occurrence still unconfirmed (email BSAS before running 06_models.R).
-Next: 05_model_dataset.R (assert 351 rows, no NA in primary covariates, deaths total 971).
+Open: DPH residence vs occurrence still unconfirmed (BSAS email sent; do not run 06_models.R until answered).
+Next: 05b_explore.R (distributions, collinearity, overdispersion), then 06_models.R after the BSAS reply.
