@@ -17,3 +17,9 @@ Checked: 17 towns were assigned to the nearest CoC. Cape/Islands towns, Fairhave
 Open: DPH residence vs occurrence still unconfirmed (public pages do not say; ask BSAS or read the dashboard notes); IRB email not yet sent; PIT xlsb-to-CSV conversion is not scripted; docs/data_dictionary.csv missing; Cohasset sensitivity check; 40 facilities lack coordinates; citations L11-L15 unverified.
 Next: send IRB email; commit scripts 02 and 03, data/processed, output/figures and analysis plan; tag plan-v0.1; get Census API key; write 04_acs_towns.R.
 
+## 2026-10-19
+Done: ACS 2020-2024 5-year pulled for 351 towns (scripts/04_acs_towns.R); name join exact, no unmatched towns. BSAS email sent, awaiting response.
+Checked: ACS vs DPH population within about 1% for most towns; 30 small rural/Cape towns differ by more than 10%. Rent missing in 12 small towns.
+Decided: drop rent from primary model (sensitivity only); add sensitivity checks 7-8; keep DPH population as offset. See plan Deviations.
+Open: DPH residence vs occurrence still unconfirmed (email BSAS before running 06_models.R).
+Next: 05_model_dataset.R (assert 351 rows, no NA in primary covariates, deaths total 971).
